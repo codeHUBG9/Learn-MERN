@@ -6,21 +6,22 @@ import { root_url, AccessKey } from "../../utility/config";
 
 export const searchImage = (term) => async (dispatch) => {
   try {
+    const per_page = 8;
     dispatch({ type: IMAGE_REQUEST });
-
     const config = {
       headers: {
         Authorization: `Client-ID ${AccessKey}`,
       },
       params: {
         query: term,
-        per_page: 30,
+        per_page: per_page,
       },
     };
-    const { data } = await axios.get(`${root_url}/search/photos`, config);
+    const response = await axios.get(`${root_url}/search/photos`, config);
+    const data = { ...response.data, per_page: per_page };
     dispatch({
       type: IMAGE_SUCCESS,
-      payload: data.results,
+      payload: data,
     });
   } catch (error) {
     dispatch({

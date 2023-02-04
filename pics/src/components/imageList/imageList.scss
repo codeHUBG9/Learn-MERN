@@ -1,0 +1,30 @@
+.imageContainer{
+    display: flex;
+    flex-direction: column;
+    .ddd{
+        background-color: red !important;
+        Pagination{
+            background-color: green !important;
+        }
+      }
+}
+
+Pagination{
+    text-decoration: none;
+}
+/* Pagination */
+.page-item.active .page-link {
+    background-color: #fa9c23;
+    border-color: #fa9c23;
+  }
+  
+  .page-link {
+    color: #fa9c23;
+  }
+  
+  .page-link:hover {
+    color: #fa9c23;
+  }
+  
+
+  

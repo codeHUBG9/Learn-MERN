@@ -6,6 +6,8 @@ import { searchImage } from "./redux/actions/GetImages";
 import "./app.scss";
 import Footer from "./components/footer/Footer";
 import { searchStore } from "./data/RandomImageSearch";
+import Pagi_nation from "./components/pagination/Pagi_nation";
+
 const App = () => {
   const randomSearch =
     searchStore[Math.floor(Math.random() * searchStore.length)];

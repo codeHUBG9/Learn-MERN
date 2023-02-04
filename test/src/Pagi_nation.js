@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Pagination from "react-js-pagination";
-// import "./pagination.scss";
 const Pagi_nation = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { loading, results, total, total_pages, per_page } = useSelector(
-    (state) => state.images
-  );
+  const total_pages = 2400;
+  const per_page = 8;
+
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber);
   }

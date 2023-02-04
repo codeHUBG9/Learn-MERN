@@ -1,29 +1,17 @@
 .imageContainer{
     display: flex;
-    flex-direction: column;
-    .ddd{
-        background-color: red !important;
-        Pagination{
-            background-color: green !important;
-        }
-      }
 }
 
-Pagination{
-    text-decoration: none;
-}
-/* Pagination */
+/* Pagination-Override color property */
 .page-item.active .page-link {
-    background-color: #fa9c23;
-    border-color: #fa9c23;
+    background-color: rgba(74, 91, 150,0.2) !important;
+    border-color: #263055 !important;
   }
-  
   .page-link {
-    color: #fa9c23;
+    color: #263055 !important;
   }
-  
   .page-link:hover {
-    color: #fa9c23;
+    color: #263055 !important;
   }
   
 

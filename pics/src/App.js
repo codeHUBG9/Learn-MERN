@@ -1,19 +1,18 @@
-import React, { Fragment, useState } from "react";
-import { searchImage } from "./utility/api";
+import React, { Fragment } from "react";
 import SearchBar from "./components/searchBar/SearchBar";
 import ImageList from "./components/imageList/ImageList";
+import { useDispatch } from "react-redux";
+import { searchImage } from "./redux/actions/GetImages";
 const App = () => {
-  const [imagesStore, setImagesStore] = useState([]);
-  const handleSubmit = async (term) => {
-    console.log("Do a search with :", term);
-    const results = await searchImage(term);
-
-    setImagesStore(results);
+  const dispatch = useDispatch();
+  const handleSubmit = (term) => {
+    dispatch(searchImage(term));
   };
+
   return (
     <Fragment>
       <SearchBar onSubmit={handleSubmit} />
-      <ImageList data={imagesStore} />
+      <ImageList />
     </Fragment>
   );
 };

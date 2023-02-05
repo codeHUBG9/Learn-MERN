@@ -4,7 +4,7 @@ import { root_url, AccessKey } from "../../utility/config";
 
 // Get Images from Unsplash.com
 
-export const searchImage = (term) => async (dispatch) => {
+export const searchImage = (term, pageNo) => async (dispatch) => {
   try {
     const per_page = 8;
     dispatch({ type: IMAGE_REQUEST });
@@ -15,6 +15,7 @@ export const searchImage = (term) => async (dispatch) => {
       params: {
         query: term,
         per_page: per_page,
+        page: pageNo,
       },
     };
     const response = await axios.get(`${root_url}/search/photos`, config);

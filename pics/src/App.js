@@ -13,20 +13,25 @@ const App = () => {
     searchStore[Math.floor(Math.random() * searchStore.length)];
 
   const [searchedTxt, setSearchedTxt] = useState(randomSearch);
+  const [currentPageNo, setCurrentPageNo] = useState(1);
   const dispatch = useDispatch();
   const handleSubmit = (term) => {
     setSearchedTxt(term);
   };
+  const handlePage = (currentPage = 1) => {
+    setCurrentPageNo(currentPage);
+  };
+
   useEffect(() => {
-    dispatch(searchImage(searchedTxt));
-  }, [searchedTxt, dispatch]);
+    dispatch(searchImage(searchedTxt, currentPageNo));
+  }, [searchedTxt, currentPageNo, dispatch]);
 
   return (
     <>
       <SearchBar onSubmit={handleSubmit} />
       <div className='app'>
         <div className='main-page'>
-          <ImageList />
+          <ImageList onChangePageNo={handlePage} />
         </div>
         <div className='footer'>
           <Footer />

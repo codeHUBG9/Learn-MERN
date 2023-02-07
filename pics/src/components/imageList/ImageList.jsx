@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ImageShow from "../imageShow/ImageShow";
 import { useSelector } from "react-redux";
 import Loader from "../loader/Loader";
 import Pagination from "react-js-pagination";
 import "./imageList.scss";
 import "../pagination/pagination.scss";
-const ImageList = () => {
+const ImageList = ({ onChangePageNo }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const { loading, results, total, total_pages, per_page } = useSelector(
     (state) => state.images
@@ -13,6 +13,11 @@ const ImageList = () => {
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber);
   }
+
+  useEffect(() => {
+    onChangePageNo(currentPage);
+  }, [currentPage]);
+
   return (
     <div className='imageContainer'>
       <div>

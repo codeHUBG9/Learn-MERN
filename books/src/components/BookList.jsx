@@ -1,13 +1,17 @@
+import BookShow from "./BookShow";
+import "./bookList.scss";
 const BookList = ({ books }) => {
+  const rednderedBooks = books.map((book) => {
+    return <BookShow key={book.id} book={book} />;
+  });
   return (
-    <div>
-      <ul>
-        {books.map((book, index) => (
-          <li key={index}>
-            {book.title},{book.description}
-          </li>
+    <div className='bookList'>
+      {books &&
+        books.map((book) => (
+          <div className='newBook' key={book.id}>
+            <BookShow book={book} />
+          </div>
         ))}
-      </ul>
     </div>
   );
 };

@@ -1,30 +1,33 @@
-import { useState } from "react";
+import { useState, useId } from "react";
 import BookList from "../components/BookList";
 import BookCreate from "../components/BookCreate";
 import LaunchIcon from "@mui/icons-material/Launch";
+import { v4 as uuidv4 } from "uuid";
 import "./home.scss";
-import { color } from "@mui/system";
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [open, setOpen] = useState(false);
   const [showText, setShowText] = useState(false);
-
   const handleAdd = (newBook) => {
-    newBook = { id: 2213, ...newBook };
+    /**
+     *  const newId = uuidv4(); // Unique Id
+     */
+    const newId = Math.round(Math.random() * 999);
+    newBook = { id: newId, ...newBook };
     const updatedBooks = [...books, newBook];
     setBooks(updatedBooks);
+    console.log(updatedBooks);
   };
   const handleEdit = (id, modifiedBook) => {
     const updatedBooks = books.map((book) => {
       if (book.id === id) {
-        return { ...book, modifiedBook };
+        return { ...book, ...modifiedBook };
       }
       return book;
     });
 
     setBooks(updatedBooks);
   };
-
   const handleDelete = (id) => {
     const updatedBooks = books.filter((book) => {
       return book.id !== id;
@@ -35,9 +38,6 @@ const Home = () => {
     setOpen(flag);
     setShowText(false);
   };
-  const renderedColors = books.map((color, i) => {
-    return <li key={i}>{color}</li>;
-  });
   return (
     <div className='home'>
       <div className='main'>
@@ -47,11 +47,17 @@ const Home = () => {
             <LaunchIcon className='icon' />
           </div>
         </div>
-        <BookList books={books} />
+        <div className='bookListContainer'>
+          <BookList books={books} />
+        </div>
       </div>
       {open && (
         <div className='addBook'>
-          <BookCreate onCreate={handleAdd} handleOpenClose={handleOpenClose} />
+          <BookCreate
+            onCreate={handleAdd}
+            handleOpenClose={handleOpenClose}
+            onUpdate={handleEdit}
+          />
         </div>
       )}
     </div>

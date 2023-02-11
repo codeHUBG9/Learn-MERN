@@ -168,6 +168,7 @@ const BookCreate = ({ onCreate, handleOpenClose, onUpdate }) => {
           style={styles.styleButton}
           onClick={() => {
             setBook(initialBook);
+            handleOpenClose(false);
           }}>
           Cancel
         </Button>

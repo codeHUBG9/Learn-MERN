@@ -16,7 +16,11 @@
     .main-page{
         display: flex;
         flex: 15;
-        background-color: #e8eaed;
+        background-color: #f3f3f3;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: scroll;
+
     }
     .bottom{
         display: flex;
@@ -30,4 +34,15 @@
             font-weight: 500;
         }
     }
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background-color: #d1d1d1;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(102, 102, 102, 0.5);
+    border-radius: 10px;
+
 }

@@ -1,22 +1,58 @@
+
 .bookShow {
     display: flex;
     height: 100%;
     width: 100%;
     flex-direction: column;
     background-color: white;
+    background-color: var(--blue);
     -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
     box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
 
+    -webkit-transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) !important;
+    transition: all 0.5s cubic-bezier(0.2, 0.9, 0.3, 1) !important;
     .bookImage {
         display: flex;
         flex: 12;
         padding: 15px;
+        cursor: pointer;
+       
 
         .ImageDetail {
             display: flex;
             justify-content: center;
             align-items: center;
-
+            position: relative;
+            .imgaeEdit{
+                display: flex;
+                position: absolute;
+                background-color: #f4f4f4;
+                opacity: 0.8;
+                width: 60px;
+                min-height: 30px;
+                justify-content: space-around;
+                align-items: center;
+                cursor: pointer;
+                border-radius: 3px;
+                top:-15px;
+                right:-15px;
+                span{
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    padding: 5px;
+                    color: #454545;
+                    .icon{
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
+                    &:hover{
+                        background-color:rgba(101, 101, 101,0.5);
+                        color: black !important;
+                    }
+                }
+                
+            }
             .picture {
                 height: 100%;
                 width: 100%;
@@ -47,11 +83,8 @@
                 flex: 10;
                 font-size: 14.5px;
                 font-weight: 400;
-                justify-content: center;
-                justify-self: center;
-                justify-items: center;
                 span{
-                    justify-self: center;
+                    padding-left:5px ;
                 }
             }
 

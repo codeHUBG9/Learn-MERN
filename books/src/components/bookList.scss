@@ -1,0 +1,13 @@
+.bookList{
+    display: flex;
+    padding: 0px 80px 0px 80px;
+    flex-wrap: wrap;
+   
+    .newBook{
+        width: calc((100vw - 168px) / 4);
+        height: 65%;
+        padding: 10px;
+        box-sizing: border-box;
+
+    }
+}

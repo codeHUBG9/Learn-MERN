@@ -8,7 +8,7 @@ import {
   FormControlLabel,
   Button,
 } from "@mui/material";
-const BookCreate = ({ onCreate, handleOpenClose }) => {
+const BookCreate = ({ onCreate, handleOpenClose, onUpdate }) => {
   const initialBook = {
     title: "",
     author: "",
@@ -31,6 +31,8 @@ const BookCreate = ({ onCreate, handleOpenClose }) => {
       description: description,
     };
     onCreate(newBook);
+    console.log(newBook);
+    // onUpdate(123, newBook);
     setBook(initialBook);
     setAvailable(true);
   };
@@ -166,6 +168,7 @@ const BookCreate = ({ onCreate, handleOpenClose }) => {
           style={styles.styleButton}
           onClick={() => {
             setBook(initialBook);
+            handleOpenClose(false);
           }}>
           Cancel
         </Button>

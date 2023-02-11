@@ -1,13 +1,14 @@
-const BookList = ({ books }) => {
+import BookShow from "./BookShow";
+import "./bookList.scss";
+const BookList = ({ books, onDelete }) => {
   return (
-    <div>
-      <ul>
-        {books.map((book, index) => (
-          <li key={index}>
-            {book.title},{book.description}
-          </li>
+    <div className='bookList'>
+      {books &&
+        books.map((book) => (
+          <div className='newBook' key={book.id}>
+            <BookShow book={book} onDelete={onDelete} />
+          </div>
         ))}
-      </ul>
     </div>
   );
 };

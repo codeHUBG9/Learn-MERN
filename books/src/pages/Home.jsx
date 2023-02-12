@@ -3,6 +3,7 @@ import BookList from "../components/BookList";
 import BookCreate from "../components/BookCreate";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 import "./home.scss";
 const Home = () => {
 	const [books, setBooks] = useState([]);
@@ -11,13 +12,14 @@ const Home = () => {
 	const [editFlag, setEditFlag] = useState(false);
 	const [editBook, setEditBook] = useState([]);
 
-	const handleAdd = (newBook) => {
+	const handleAdd = async (newBook) => {
 		const newId = uuidv4(); // Unique Id
 		// const newId = Math.round(Math.random() * 999);
 		newBook = { id: newId, ...newBook };
-		const updatedBooks = [...books, newBook];
+
+		const response = await axios.post("http://127.0.0.1:3350/books", newBook);
+		const updatedBooks = [...books, response.data];
 		setBooks(updatedBooks);
-		console.log(updatedBooks);
 	};
 	const handleEdit = (id, modifiedBook) => {
 		const updatedBooks = books.map((book) => {
@@ -39,19 +41,27 @@ const Home = () => {
 		setOpen(flag);
 		setShowText(false);
 	};
+	// useEffect(() => {
+	// 	const initialBook = {
+	// 		id: uuidv4(),
+	// 		title:
+	// 			"The Law of success about the story of martin luther career and their experiences",
+	// 		author: "Martin Luther",
+	// 		totalPage: "1203",
+	// 		price: "58",
+	// 		description: "This is one of the best books of the world!",
+	// 		available: true,
+	// 	};
+	// 	const updatedBooks = [...books, initialBook];
+	// 	setBooks(updatedBooks);
+	// }, [0]);
+
+	const fetchBooks = async () => {
+		const response = await axios.get("http://127.0.0.1:3350/books/");
+		setBooks(response.data);
+	};
 	useEffect(() => {
-		const initialBook = {
-			id: uuidv4(),
-			title:
-				"The Law of success about the story of martin luther career and their experiences",
-			author: "Martin Luther",
-			totalPage: "1203",
-			price: "58",
-			description: "This is one of the best books of the world!",
-			available: true,
-		};
-		const updatedBooks = [...books, initialBook];
-		setBooks(updatedBooks);
+		fetchBooks();
 	}, [0]);
 
 	const onEditClick = (id) => {

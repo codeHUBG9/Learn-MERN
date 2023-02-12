@@ -12,8 +12,8 @@ const Home = () => {
 	const [editBook, setEditBook] = useState([]);
 
 	const handleAdd = (newBook) => {
-		//  const newId = uuidv4(); // Unique Id
-		const newId = Math.round(Math.random() * 999);
+		const newId = uuidv4(); // Unique Id
+		// const newId = Math.round(Math.random() * 999);
 		newBook = { id: newId, ...newBook };
 		const updatedBooks = [...books, newBook];
 		setBooks(updatedBooks);

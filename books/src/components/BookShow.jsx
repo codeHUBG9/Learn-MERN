@@ -22,7 +22,7 @@ const BookShow = ({ book, onDelete, onEditClick }) => {
 					</div>
 					<div className='picture'>
 						<img
-							src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEV9maJF3Jt_EixuSytfMc7Wen15HgEyg9qA&usqp=CAU'
+							src={`https://picsum.photos/seed/${book.id}/300/200`}
 							alt='book'
 						/>
 					</div>

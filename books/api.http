@@ -1,0 +1,28 @@
+# Get All books
+
+GET http://127.0.0.1:3350/books HTTP/1.1
+Content-Type: application/json
+
+###
+# Create A book
+POST  http://127.0.0.1:3350/books HTTP/1.1
+Content-Type: application/json
+
+{
+    "id":"e0d94426-657f-43d1-8fb5-0f12392b0b50",
+    "title":"Hello"
+}
+
+###
+# Update a book by id
+PUT http://127.0.0.1:3350/books/124 HTTP/1.1
+Content-Type: application/json
+
+{
+    "title":"Dark Tower"
+}
+
+###
+#Delete a book by id
+DELETE http://127.0.0.1:3350/books/124 HTTP/1.1
+Content-Type: application/json

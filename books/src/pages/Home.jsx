@@ -3,6 +3,7 @@ import BookList from "../components/BookList";
 import BookCreate from "../components/BookCreate";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 import "./home.scss";
 const Home = () => {
 	const [books, setBooks] = useState([]);
@@ -11,25 +12,29 @@ const Home = () => {
 	const [editFlag, setEditFlag] = useState(false);
 	const [editBook, setEditBook] = useState([]);
 
-	const handleAdd = (newBook) => {
-		//  const newId = uuidv4(); // Unique Id
-		const newId = Math.round(Math.random() * 999);
+	const handleAdd = async (newBook) => {
+		const newId = uuidv4(); // Unique Id
 		newBook = { id: newId, ...newBook };
-		const updatedBooks = [...books, newBook];
+		const response = await axios.post("http://127.0.0.1:3350/books", newBook);
+		const updatedBooks = [...books, response.data];
 		setBooks(updatedBooks);
-		console.log(updatedBooks);
 	};
-	const handleEdit = (id, modifiedBook) => {
+	const handleEdit = async (id, modifiedBook) => {
+		const response = await axios.put(
+			`http://127.0.0.1:3350/books/${id}`,
+			modifiedBook
+		);
 		const updatedBooks = books.map((book) => {
 			if (book.id === id) {
-				return { ...book, ...modifiedBook };
+				return { ...book, ...response.data };
 			}
 			return book;
 		});
 		setBooks(updatedBooks);
 		setEditFlag(false);
 	};
-	const handleDelete = (id) => {
+	const handleDelete = async (id) => {
+		await axios.delete(`http://127.0.0.1:3350/books/${id}`);
 		const updatedBooks = books.filter((book) => {
 			return book.id !== id;
 		});
@@ -39,29 +44,20 @@ const Home = () => {
 		setOpen(flag);
 		setShowText(false);
 	};
-	useEffect(() => {
-		const initialBook = {
-			id: uuidv4(),
-			title:
-				"The Law of success about the story of martin luther career and their experiences",
-			author: "Martin Luther",
-			totalPage: "1203",
-			price: "58",
-			description: "This is one of the best books of the world!",
-			available: true,
-		};
-		const updatedBooks = [...books, initialBook];
-		setBooks(updatedBooks);
-	}, [0]);
 
-	const onEditClick = (id) => {
+	const fetchBooks = async () => {
+		const response = await axios.get("http://127.0.0.1:3350/books/");
+		setBooks(response.data);
+	};
+	useEffect(() => {
+		fetchBooks();
+	}, []);
+
+	const onEditClick = async (id) => {
+		const response = await axios.get(`http://127.0.0.1:3350/books/${id}`);
+		setEditBook(response.data);
 		setOpen(true);
 		setEditFlag(true);
-		console.log(id);
-		const xEditBook = books.filter((book) => {
-			return book.id === id;
-		});
-		setEditBook(xEditBook);
 	};
 	return (
 		<div className='home'>

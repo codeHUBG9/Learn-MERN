@@ -14,24 +14,27 @@ const Home = () => {
 
 	const handleAdd = async (newBook) => {
 		const newId = uuidv4(); // Unique Id
-		// const newId = Math.round(Math.random() * 999);
 		newBook = { id: newId, ...newBook };
-
 		const response = await axios.post("http://127.0.0.1:3350/books", newBook);
 		const updatedBooks = [...books, response.data];
 		setBooks(updatedBooks);
 	};
-	const handleEdit = (id, modifiedBook) => {
+	const handleEdit = async (id, modifiedBook) => {
+		const response = await axios.put(
+			`http://127.0.0.1:3350/books/${id}`,
+			modifiedBook
+		);
 		const updatedBooks = books.map((book) => {
 			if (book.id === id) {
-				return { ...book, ...modifiedBook };
+				return { ...book, ...response.data };
 			}
 			return book;
 		});
 		setBooks(updatedBooks);
 		setEditFlag(false);
 	};
-	const handleDelete = (id) => {
+	const handleDelete = async (id) => {
+		await axios.delete(`http://127.0.0.1:3350/books/${id}`);
 		const updatedBooks = books.filter((book) => {
 			return book.id !== id;
 		});
@@ -41,20 +44,6 @@ const Home = () => {
 		setOpen(flag);
 		setShowText(false);
 	};
-	// useEffect(() => {
-	// 	const initialBook = {
-	// 		id: uuidv4(),
-	// 		title:
-	// 			"The Law of success about the story of martin luther career and their experiences",
-	// 		author: "Martin Luther",
-	// 		totalPage: "1203",
-	// 		price: "58",
-	// 		description: "This is one of the best books of the world!",
-	// 		available: true,
-	// 	};
-	// 	const updatedBooks = [...books, initialBook];
-	// 	setBooks(updatedBooks);
-	// }, [0]);
 
 	const fetchBooks = async () => {
 		const response = await axios.get("http://127.0.0.1:3350/books/");
@@ -62,16 +51,13 @@ const Home = () => {
 	};
 	useEffect(() => {
 		fetchBooks();
-	}, [0]);
+	}, []);
 
-	const onEditClick = (id) => {
+	const onEditClick = async (id) => {
+		const response = await axios.get(`http://127.0.0.1:3350/books/${id}`);
+		setEditBook(response.data);
 		setOpen(true);
 		setEditFlag(true);
-		console.log(id);
-		const xEditBook = books.filter((book) => {
-			return book.id === id;
-		});
-		setEditBook(xEditBook);
 	};
 	return (
 		<div className='home'>

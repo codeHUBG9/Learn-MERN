@@ -4,6 +4,12 @@ GET http://127.0.0.1:3350/books HTTP/1.1
 Content-Type: application/json
 
 ###
+# Get A book by Id
+
+GET http://127.0.0.1:3350/books/1 HTTP/1.1
+Content-Type: application/json
+###
+
 # Create A book
 POST  http://127.0.0.1:3350/books HTTP/1.1
 Content-Type: application/json

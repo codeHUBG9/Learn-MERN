@@ -32,7 +32,7 @@ const BookCreate = ({ onCreate, handleOpenClose, onUpdate, onEditingBook }) => {
 			description: description,
 		};
 		if (editFlag) {
-			onUpdate(editBook[0].id, newBook);
+			onUpdate(editBook.id, newBook);
 			handleOpenClose(false);
 		} else {
 			onCreate(newBook);
@@ -43,8 +43,8 @@ const BookCreate = ({ onCreate, handleOpenClose, onUpdate, onEditingBook }) => {
 
 	useEffect(() => {
 		if (editFlag) {
-			setBook(editBook[0]);
-			setAvailable(editBook[0].available);
+			setBook(editBook);
+			setAvailable(editBook.available);
 		}
 	}, [editFlag, editBook]);
 

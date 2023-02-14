@@ -18,7 +18,7 @@ const BookCreate = () => {
 		price: "",
 		description: "",
 	};
-	const { handleAdd, handleOpenClose, handleEdit, editFlag, editBook } =
+	const { onCreate, handleOpenClose, onUpdate, editFlag, editBook } =
 		useContext(bookContext);
 	const [available, setAvailable] = useState(true);
 	const [book, setBook] = useState(initialBook);
@@ -35,10 +35,10 @@ const BookCreate = () => {
 			description: description,
 		};
 		if (editFlag) {
-			handleEdit(editBook.id, newBook);
+			onUpdate(editBook.id, newBook);
 			handleOpenClose(false);
 		} else {
-			handleAdd(newBook);
+			onCreate(newBook);
 		}
 		setBook(initialBook);
 		setAvailable(true);

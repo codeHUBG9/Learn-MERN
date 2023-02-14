@@ -54,26 +54,24 @@ function Provider({ children }) {
 		setOpen(true);
 		setEditFlag(true);
 	};
+	const valueToShare = {
+		fetchBooks: fetchBooks,
+		onCreate: handleAdd,
+		onDelete: handleDelete,
+		handleOpenClose: handleOpenClose,
+		onEditClick: onEditClick,
+		onUpdate: handleEdit,
+		open: open,
+		showText: showText,
+		editFlag: editFlag,
+		editBook: editBook,
+		setOpen: setOpen,
+		setShowText: setShowText,
+		books: books,
+	};
 
 	return (
-		<bookContext.Provider
-			value={{
-				fetchBooks,
-				handleAdd,
-				handleDelete,
-				handleOpenClose,
-				onEditClick,
-				handleEdit,
-				open,
-				showText,
-				editFlag,
-				editBook,
-				setOpen,
-				setShowText,
-				books,
-			}}>
-			{children}
-		</bookContext.Provider>
+		<bookContext.Provider value={valueToShare}>{children}</bookContext.Provider>
 	);
 }
 export { Provider };

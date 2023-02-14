@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import "./bookShow.scss";
 import EditIcon from "@mui/icons-material/Edit";
 import ClearIcon from "@mui/icons-material/Clear";
-import { useContext } from "react";
-import bookContext from "../context/books";
+import { useBooksContext } from "../hooks/use-books-context";
 const BookShow = ({ book }) => {
-	const { onDelete, onEditClick } = useContext(bookContext);
+	const { onDelete, onEditClick } = useBooksContext();
 	const [bgColor, setBgColor] = useState("#08c236");
 	useEffect(() => {
 		book.available ? setBgColor("#08c236") : setBgColor("#dd2c00");

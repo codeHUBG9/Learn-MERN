@@ -2,12 +2,11 @@ import { useEffect } from "react";
 import BookList from "../components/BookList";
 import BookCreate from "../components/BookCreate";
 import LaunchIcon from "@mui/icons-material/Launch";
-import { useContext } from "react";
-import bookContext from "../context/books";
+import { useBooksContext } from "../hooks/use-books-context";
 import "./home.scss";
 const Home = () => {
 	const { fetchBooks, open, showText, setOpen, setShowText } =
-		useContext(bookContext);
+		useBooksContext();
 
 	useEffect(() => {
 		fetchBooks();

@@ -1,8 +1,7 @@
 import "./bookCreate.scss";
 import React, { useEffect, useState } from "react";
 import ClearIcon from "@mui/icons-material/Clear";
-import bookContext from "../context/books";
-import { useContext } from "react";
+import { useBooksContext } from "../hooks/use-books-context";
 import {
 	TextField,
 	Checkbox,
@@ -19,7 +18,7 @@ const BookCreate = () => {
 		description: "",
 	};
 	const { onCreate, handleOpenClose, onUpdate, editFlag, editBook } =
-		useContext(bookContext);
+		useBooksContext();
 	const [available, setAvailable] = useState(true);
 	const [book, setBook] = useState(initialBook);
 	const { title, author, totalPage, price, description } = book;

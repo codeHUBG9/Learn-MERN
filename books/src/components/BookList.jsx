@@ -1,19 +1,19 @@
 import BookShow from "./BookShow";
 import "./bookList.scss";
-const BookList = ({ books, onDelete, onEditClick }) => {
+import { useBooksContext } from "../hooks/use-books-context";
+const BookList = () => {
+	const { books } = useBooksContext();
 	return (
-		<div className='bookList'>
-			{books &&
-				books.map((book) => (
-					<div className='newBook' key={book.id}>
-						<BookShow
-							book={book}
-							onDelete={onDelete}
-							onEditClick={onEditClick}
-						/>
-					</div>
-				))}
-		</div>
+		<>
+			<div className='bookList'>
+				{books &&
+					books.map((book) => (
+						<div className='newBook' key={book.id}>
+							<BookShow book={book} />
+						</div>
+					))}
+			</div>
+		</>
 	);
 };
 export default BookList;

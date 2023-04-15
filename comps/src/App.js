@@ -1,30 +1,46 @@
 import React from "react";
 import Button from "./components/Button";
+import {} from "react-icons/md";
+import {
+	FcDataConfiguration,
+	FcDataEncryption,
+	FcDoughnutChart,
+	FcLike,
+	FcServices,
+} from "react-icons/fc";
 const App = () => {
+	const handleClick = () => {
+		console.log("Click");
+	};
 	return (
 		<>
 			<div>
-				<Button primary rounded outline>
+				<Button secondary onClick={handleClick} className='mb-5'>
+					<FcDataEncryption />
 					Click here!
 				</Button>
 			</div>
 			<div>
-				<Button secondary outline>
+				<Button danger outline>
+					<FcDataConfiguration />
 					Buy Now!
 				</Button>
 			</div>
 			<div>
-				<Button success rounded outline>
+				<Button success outline>
+					<FcDoughnutChart />
 					See Deals!
 				</Button>
 			</div>
 			<div>
 				<Button warning outline>
+					<FcLike />
 					Hide Ads!
 				</Button>
 			</div>
 			<div>
-				<Button danger rounded>
+				<Button secondary rounded>
+					<FcServices />
 					Something!
 				</Button>
 			</div>
